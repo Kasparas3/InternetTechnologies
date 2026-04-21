@@ -1,0 +1,13 @@
+/* styles.css — tiny amount of custom CSS on top of Bootstrap. */
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.card.border-success {
+  border-width: 2px;
+}
+
+.card-title {
+  word-break: break-word;
+}
