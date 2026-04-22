@@ -1,5 +1,4 @@
-// server.js — entry point. Starts an HTTPS server that serves both
-// the API and the frontend static files from the same port.
+// server.js — entry point. Starts an HTTPS server and mounts the API routes.
 
 const fs = require('fs');
 const https = require('https');
@@ -23,12 +22,11 @@ app.use('/api/auth', authRoutes);
 // Every /api/movies/* endpoint requires a valid JWT.
 app.use('/api/movies', requireAuth, movieRoutes);
 
-// --- Frontend static files ---
-// Serves everything in ../frontend at the root URL.
-// So https://localhost:3000/login.html returns frontend/login.html.
-// Because the frontend is served from the same origin as the API,
-// we don't need CORS.
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+// Root health-check so hitting https://localhost:3000/ in a browser
+// confirms the server is running.
+app.get('/', (req, res) => {
+  res.send('Movie Watchlist API is running. Use an API client (curl / Postman) to call /api/...');
+});
 
 // --- Start HTTPS server ---
 // We load a self-signed certificate from ./certs/ (see README for how to generate).
