@@ -1,7 +1,3 @@
-// auth.js — Express middleware that checks a JWT in the Authorization header.
-// If the token is valid, we attach the username to req.user and call next().
-// If not, we respond with 401 Unauthorized and stop.
-
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 

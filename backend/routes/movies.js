@@ -1,14 +1,9 @@
-// routes/movies.js — the 6 movie endpoints.
-// Every endpoint requires a valid JWT (Authorization header),
-// so we apply the requireAuth middleware at the router level below (in server.js).
-
 const express = require('express');
 const db = require('../db');
 
 const router = express.Router();
 
 // Helper: validate the body of create/update requests.
-// Returns an error string if invalid, or null if OK.
 function validateMovie(body) {
   if (!body || typeof body !== 'object') return 'Body must be a JSON object';
   if (typeof body.title !== 'string' || body.title.trim() === '') return 'title must be a non-empty string';
@@ -34,7 +29,7 @@ router.get('/', (req, res) => {
   res.json(rows);
 });
 
-// 2) GET /api/movies/:id  — get one movie (path param)
+// 2) GET /api/movies/:id  — get one movie
 router.get('/:id', (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: 'id must be an integer' });
@@ -58,7 +53,7 @@ router.post('/', (req, res) => {
   res.status(201).json(created);
 });
 
-// 4) PUT /api/movies/:id  — replace a movie (path param + body)
+// 4) PUT /api/movies/:id  — replace a movie
 router.put('/:id', (req, res) => {
   const id = Number(req.params.id);
   if (!Number.isInteger(id)) return res.status(400).json({ error: 'id must be an integer' });

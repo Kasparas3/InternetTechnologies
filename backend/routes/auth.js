@@ -1,5 +1,3 @@
-// routes/auth.js — login endpoint. Checks username/password, returns a JWT.
-
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');

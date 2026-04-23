@@ -1,6 +1,3 @@
-// db.js — opens the SQLite database, creates tables, seeds one admin user.
-// better-sqlite3 is a synchronous SQLite driver: db.prepare(sql).run() / .all().
-
 const Database = require('better-sqlite3');
 const bcrypt = require('bcryptjs');
 const path = require('path');
